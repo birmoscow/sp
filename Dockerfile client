@@ -1,0 +1,11 @@
+FROM ubuntu:22.04
+WORKDIR /app
+
+COPY ./client_hw_1_1.c ./
+RUN apt update -y && apt install gcc net-tools iproute2 -y
+RUN gcc client_hw_1_1.c -o main
+RUN bash -c 'echo -e "ALABUGA\n" > serv.conf'
+
+CMD ["bash", "-c", "./main --client server < serv.conf"]
+#CMD ["./main", "--client"]
+

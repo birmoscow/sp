@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server
+spec:
+  selector:
+    matchLabels:
+      run: server
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: server
+    spec:
+      containers:
+      - name: server
+        image: localhost:5000/chk
+        ports:
+        - containerPort: 8888

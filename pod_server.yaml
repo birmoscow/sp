@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-chk
+  labels:
+    app.kubernetes.io/name: app-chk
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: smth
+    spec:
+      subdomain: main
+      hostname: server
+      containers:
+      - name: server
+        image: localhost:5000/chk
+        command: ['sh', '-c', "./main --server server < serv.conf"]
+#        ports:
+#        - containerPort: 8888
+#          protocol: TCP
+  selector:
+    matchLabels:
+      run: smth

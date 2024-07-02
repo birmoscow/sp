@@ -1,0 +1,20 @@
+services:
+  client:
+    build: ./client/.
+    tty: true
+    stdin_open: true
+    depends_on:
+      - server
+    networks:
+      - net
+
+  server:
+    build: ./server/.
+    tty: true
+    networks:
+      - net
+
+
+networks:
+  net:
+    driver: bridge

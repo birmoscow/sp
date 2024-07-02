@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: app-chkclient
+#  labels:
+#    app.kubernetes.io/name: MyApp
+spec:
+  template:
+    spec:
+      subdomain: main
+      hostname: client
+      containers:
+      - name: client
+        image: localhost:5000/chk
+        command: ['sh', '-c', "./main --client main < serv.conf"]
+      restartPolicy: Never
+  backoffLimit: 0
