@@ -13,4 +13,3 @@ sudo jexec jail1 ifconfig epair1b inet 192.0.2.11/24 up; sudo jexec jail2 ifconf
 sudo jexec jail3 ifconfig epair3b inet 192.0.3.13/24 up; sudo jexec jail4 ifconfig epair4b inet 192.0.3.14/24 up
 sudo jexec jail1 ifconfig epair51b inet 192.0.5.11/24 up; sudo jexec jail2 ifconfig epair52b inet 192.0.5.12/24 up
 sudo jexec jail3 ifconfig epair53b inet 192.0.5.13/24 up; sudo jexec jail4 ifconfig epair54b inet 192.0.5.14/24 up
-sudo ifconfig em0.2 inet 192.0.2.112/24 up; sudo ifconfig em0.3 inet 192.0.3.113/24 up
