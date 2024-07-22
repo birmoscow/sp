@@ -5,8 +5,8 @@ COPY . .
 RUN apt update
 RUN apt install python3-pip gcc nano git -y
 RUN pip install conan cmake
-RUN git -C pris submodule update --init --recursive
-RUN cmake -DPACKAGES_CONAN=ON -DCMAKE_BUILD_TYPE=Release -S pris/ -B pris/build
-RUN cmake --build pris/build --target all -j 8
+RUN git -C /app/pris submodule update --init --recursive
+RUN cmake -DPACKAGES_CONAN=ON -DCMAKE_BUILD_TYPE=Release -S /app/pris/ -B /app/pris/build
+RUN cmake --build /app/pris/build --target all -j 8
 
 CMD ["bash", "-c", "echo Hi"]
