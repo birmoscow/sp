@@ -13,7 +13,7 @@ static const char ARG_SERVER[] = "--server";
 static const char ARG_CLIENT[] = "--client";
 static const char ARG_HELP[] = "--help";
 static const char EXIT[] = "exit()";
-static char MODE;
+static char MODE = 's';
 static char IP[20];
 static unsigned PORT;
 static int SOCKET;
@@ -46,6 +46,7 @@ startTCPServer(struct sockaddr_in addr)
     ssize_t msgLen;
     char msg[MAX_LEN + 1] = {0};
     while (isActive) {
+	int num = 0;
         int curClient = accept(SOCKET, NULL, 0);
         if (send(curClient, "Hi!\n", 5, 0) < 0) {
             fprintf(stderr, "Error: %s\n", strerror(errno));
@@ -57,12 +58,9 @@ startTCPServer(struct sockaddr_in addr)
                 exit(1);
             }
             printf("Msg : %s\n\n", msg);
-            printf("Your answer or write 'exit()' to exit: ");
-            fflush(stdout);
-            for (int i = 0; i < MAX_LEN + 1; ++i) {
-                msg[i] = 0;
-            }
-            scanf("%s", msg);
+            //printf("Your answer or write 'exit()' to exit: ");
+            //memset(msg, 0, MAX_LEN + 1);
+            sprintf(msg, "MSG_NUM_%d", ++num);
 
             if (strncmp(msg, EXIT, sizeof(EXIT)) == 0) {
                 close(curClient);
@@ -263,12 +261,9 @@ int
 main(int argc, char **argv)
 {
     errno = 0;
-    MODE = 's';
 
-    char buf;
+    char buf = 't';
     int flag = 1;
-
-    buf = 't';
 
     PORT = 8080;
 
