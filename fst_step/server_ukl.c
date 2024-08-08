@@ -182,7 +182,7 @@ startTCPClient(struct sockaddr_in addr)
         if (strncmp(msg, EXIT, sizeof(EXIT)) == 0) {
             break;
         }
-        if (send(SOCKET, msg, strnlen(msg, MAX_LEN), 0) < 0) {
+        if (send(SOCKET, msg, strnlen(msg, MAX_LEN) + 1, 0) < 0) {
             fprintf(stderr, "Error: %s\n", strerror(errno));
             exit(1);
         }
