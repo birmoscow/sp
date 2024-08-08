@@ -118,10 +118,10 @@ startTCPClient(struct sockaddr_in addr)
         }
         scanf("%s", msg);
 
-        if (strncmp(msg, EXIT, sizeof(EXIT) + 1) == 0) {
+        if (strncmp(msg, EXIT, sizeof(EXIT)) == 0) {
             break;
         }
-        if (send(SOCKET, msg, strnlen(msg, MAX_LEN), 0) < 0) {
+        if (send(SOCKET, msg, strnlen(msg, MAX_LEN) + 1, 0) < 0) {
             fprintf(stderr, "[file: %s][line %d] Error: %s\n", __FILE__, __LINE__, strerror(errno));
             exit(1);
         }
